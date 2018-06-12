@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Colombian Jams</string>
+    <string name="genre">Genres</string>
+    <string name="artist">Artists</string>
+    <string name="allsongs">All Songs</string>
+    <string name="suffle">Random</string>
+</resources>

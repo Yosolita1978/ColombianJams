@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Height of each list item -->
+    <dimen name="list_item_height">80dp</dimen>
+    <dimen name="list_item_width">300dp</dimen>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- Text dimensions. -->
+    <dimen name="text_AppName">35sp</dimen>
+    <dimen name="text_items">26sp</dimen>
+    <dimen name="padding_text">16dp</dimen>
+    <dimen name="margin_text">8dp</dimen>
+</resources>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#ffca28</color>
+    <color name="colorPrimaryDark">#ffca28</color>
+    <color name="colorPrimaryLight">#fffd61</color>
+    <color name="colorAccent">#42a5f5</color>
+
+    <!-- Style colors for the background -->
+
+    <color name="background">#212121</color>
+    <color name="searchBackground">#747474</color>
+    <color name="backgroundSecondary">#e3f2fd</color>
+    <color name="secondaryLight">#ffffff</color>
+    <color name="textBackground">#ffffff</color>
+    <color name="textSecondary">#000000</color>
+</resources>
