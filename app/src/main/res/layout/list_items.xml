@@ -12,7 +12,7 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_weight="0"
-        android:src="@drawable/guitaricon" />
+        tools:src="@drawable/guitaricon" />
 
     <LinearLayout
         android:id="@+id/text_container"
@@ -49,8 +49,8 @@
 
     <ImageView
         android:id="@+id/icon_tap_and_play"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"

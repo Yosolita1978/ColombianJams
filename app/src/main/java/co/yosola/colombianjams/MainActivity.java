@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,18 +25,29 @@ public class MainActivity extends AppCompatActivity {
         // Find the View that shows all the songs
         TextView allsongs = (TextView) findViewById(R.id.allsongs);
 
-        if(allsongs != null){
-            // Set a click listener on that View
-            allsongs.setOnClickListener(new View.OnClickListener() {
+        // Set a click listener on that View
+        allsongs.setOnClickListener(new View.OnClickListener() {
 
-                // The code in this method will be executed when the numbers View is clicked on.
-                @Override
-                public void onClick(View view) {
-                    Intent allsongsIntent = new Intent(MainActivity.this, AllSongsActivity.class);
-                    startActivity(allsongsIntent);
-                }
-            });
-        }
+        // The code in this method will be executed when the All Songs View is clicked on.
+            @Override
+            public void onClick(View view) {
+                Intent allsongsIntent = new Intent(MainActivity.this, AllSongsActivity.class);
+                startActivity(allsongsIntent);
+            }
+        });
+
+
+        // Find the button in front genre to show all the songs
+        ImageView genreImg = (ImageView)findViewById(R.id.allsongs_imag);
+        genreImg.setOnClickListener(new View.OnClickListener() {
+
+            // The code in this method will be executed when the All Songs View is clicked on.
+            @Override
+            public void onClick(View view) {
+                Intent allsongsIntent = new Intent(MainActivity.this, AllSongsActivity.class);
+                startActivity(allsongsIntent);
+            }
+        });
 
     }
 }
