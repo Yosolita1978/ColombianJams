@@ -16,6 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".AllSongsActivity"
+            android:label="@string/category_allsongs"/>
     </application>
 
 </manifest>

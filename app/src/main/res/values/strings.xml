@@ -4,4 +4,8 @@
     <string name="artist">Artists</string>
     <string name="allsongs">All Songs</string>
     <string name="suffle">Random</string>
+    <string name="home">Home</string>
+
+    <!-- Category name for All Songs [CHAR LIMIT=20] -->
+    <string name="category_allsongs">All Songs</string>
 </resources>
