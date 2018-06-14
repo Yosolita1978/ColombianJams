@@ -19,6 +19,18 @@
 
         <activity android:name=".AllSongsActivity"
             android:label="@string/category_allsongs"/>
+
+        <activity android:name=".GenreActivity"
+            android:label="@string/category_genres"/>
+
+        <activity android:name=".ArtistsActivity"
+            android:label="@string/category_artist"/>
+
+        <activity android:name=".PlaySingleSongActivity"
+            android:label="@string/playsong"/>
+
+
     </application>
+
 
 </manifest>

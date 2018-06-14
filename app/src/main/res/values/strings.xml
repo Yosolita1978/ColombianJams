@@ -5,7 +5,32 @@
     <string name="allsongs">All Songs</string>
     <string name="suffle">Random</string>
     <string name="home">Home</string>
+    <string name="playsong">Play Song</string>
 
-    <!-- Category name for All Songs [CHAR LIMIT=20] -->
+    <!-- Category name for Activities [CHAR LIMIT=20] -->
     <string name="category_allsongs">All Songs</string>
+    <string name="category_genres">Genres</string>
+    <string name="category_artist">Artists</string>
+
+    <!-- Genres name for Genre Acivity [CHAR LIMIT=20] -->
+    <string name="genre_song_one">Vallenato</string>
+    <string name="genre_song_two">Salsa</string>
+    <string name="genre_song_three">Cumbia</string>
+    <string name="genre_song_four">Tropi Pop</string>
+    <string name="genre_song_five">Hip Hop</string>
+
+    <!-- Artist name for Artists Acivity [CHAR LIMIT=20] -->
+    <string name="artist_song_one">Rafael Escalona</string>
+    <string name="artist_song_two">Joe Arroyo</string>
+    <string name="artist_song_three">Totó La Momposina</string>
+    <string name="artist_song_four">Sidestepper</string>
+    <string name="artist_song_five">ChocQuibTown</string>
+
+    <!-- Song name for All Song Acivity [CHAR LIMIT=20] -->
+    <string name="song_one">El Testamento</string>
+    <string name="song_two">La Rebelion</string>
+    <string name="song_three">Yo me llamó Cumbia</string>
+    <string name="song_four">Más Papaya</string>
+    <string name="song_five">Pescao Envenenao</string>
+
 </resources>

@@ -6,12 +6,12 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     android:orientation="vertical"
-    tools:context="co.yosola.colombianjams.AllSongsActivity">
+    tools:context="co.yosola.colombianjams.ArtistsActivity">
 
     <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/navigation_arrow"
@@ -22,22 +22,22 @@
             android:layout_gravity="center_vertical"
             tools:src="@drawable/ic_arrow_back_black_24dp" />
 
-    <TextView
-        android:id="@+id/text_navigation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_weight="1"
-        android:padding="8dp"
-        android:textColor="@color/textBackground"
-        android:textSize="20sp"
-        tools:text="All Songs" />
+        <TextView
+            android:id="@+id/text_navigation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:padding="8dp"
+            android:textColor="@color/textBackground"
+            android:textSize="20sp"
+            tools:text="Artists" />
 
-</LinearLayout>
+    </LinearLayout>
 
-    <ListView android:id="@+id/list"
+    <ListView android:id="@+id/list_options"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -45,6 +45,6 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
-        tools:listitem="@layout/list_items"/>
+        tools:listitem="@layout/list_options"/>
 
 </LinearLayout>

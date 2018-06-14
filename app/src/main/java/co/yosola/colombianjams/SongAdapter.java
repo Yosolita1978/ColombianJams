@@ -1,6 +1,7 @@
 package co.yosola.colombianjams;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,25 +25,25 @@ public class SongAdapter extends ArrayAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         View listItemView = convertView;
-        if(listItemView == null) {
+        if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(R.layout.list_items, parent, false);
         }
 
         Song currentSong = (Song) getItem(position);
 
-        TextView nameTextView = (TextView) listItemView.findViewById(R.id.text_view_name);
+        TextView nameTextView = listItemView.findViewById(R.id.text_view_name);
         nameTextView.setText(currentSong.getSongName());
 
-        TextView artistTextView = (TextView) listItemView.findViewById(R.id.text_view_artist);
+        TextView artistTextView = listItemView.findViewById(R.id.text_view_artist);
         artistTextView.setText(currentSong.getSongArtist());
 
-        TextView genreTextView = (TextView) listItemView.findViewById(R.id.text_view_genre);
+        TextView genreTextView = listItemView.findViewById(R.id.text_view_genre);
         genreTextView.setText(currentSong.getSongGenre());
 
         // Find the ImageView in the list_item.xml layout with the ID image.
         ImageView imageView = (ImageView) listItemView.findViewById(R.id.image);
         // Set the ImageView to the image resource specified in the current Word
-        imageView.setImageResource(currentSong.getImageResourceId());
+        imageView.setImageDrawable(currentSong.getImageResource());
 
         return listItemView;
     }
