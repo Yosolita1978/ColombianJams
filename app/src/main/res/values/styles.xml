@@ -17,9 +17,25 @@
         <item name="android:textColor">@color/textSecondary</item>
         <item name="android:textSize">@dimen/text_items</item>
         <item name="android:textStyle">bold|italic</item>
-
-
-
     </style>
+
+    <!-- Style for a Navigation text views -->
+    <style name="NavigationTextStyle">
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:layout_marginLeft">@dimen/marginLeft</item>
+        <item name="android:padding">@dimen/padding</item>
+        <item name="android:textColor">@color/textBackground</item>
+        <item name="android:textSize">@dimen/main_activity</item>
+        <item name="android:textStyle">bold|italic</item>
+    </style>
+
+    <!-- Style for a Layout List Item in the Main Activity xml -->
+    <style name="LayoutListItemStyle">
+        <item name="android:layout_marginLeft">@dimen/twenty_margin</item>
+        <item name="android:layout_marginRight">@dimen/twenty_margin</item>
+        <item name="android:layout_marginTop">@dimen/twenty_margin</item>
+    </style>
+
+
 
 </resources>

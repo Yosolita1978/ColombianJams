@@ -25,7 +25,7 @@ public class PlaySingleSongActivity extends AppCompatActivity {
         int value = getIntent().getExtras().getInt("indexSongSelected");
 
         //Start the current Song
-        Song currentSong = songsOfColombia.getSongbyIndex(value);
+        final Song currentSong = songsOfColombia.getSongbyIndex(value);
 
         //SetUp the name of the current song
         TextView currentSongName = findViewById(R.id.song_name_text);
@@ -52,8 +52,16 @@ public class PlaySingleSongActivity extends AppCompatActivity {
             // The code in this method will be executed when the All Songs View is clicked on.
             @Override
             public void onClick(View view) {
-                Intent backtoMainIntent = new Intent(PlaySingleSongActivity.this, MainActivity.class);
-                startActivity(backtoMainIntent);
+                int index = songsOfColombia.getSongIndex(currentSong);
+                Intent previousIntent;
+                if (index == 0) {
+                    previousIntent = new Intent(PlaySingleSongActivity.this, MainActivity.class);
+                } else {
+                    index = index - 1;
+                    previousIntent = new Intent(PlaySingleSongActivity.this, PlaySingleSongActivity.class);
+                    previousIntent.putExtra("indexSongSelected", (index));
+                }
+                startActivity(previousIntent);
             }
         });
 
@@ -81,12 +89,19 @@ public class PlaySingleSongActivity extends AppCompatActivity {
 
         //SetUp the Play image of the current song
         final ImageView currentPlay = findViewById(R.id.play_current_song);
+        currentPlay.setImageResource(R.drawable.ic_play_arrow_black_24dp);
         currentPlay.setOnClickListener(new View.OnClickListener() {
-
+            boolean isPlaying = false;
             // The code in this method will be executed when the All Songs View is clicked on.
             @Override
             public void onClick(View view) {
-                currentPlay.setImageResource(R.drawable.ic_pause_black_24dp);
+                if(isPlaying){
+                    isPlaying = false;
+                    currentPlay.setImageResource(R.drawable.ic_play_arrow_black_24dp);
+                } else {
+                    isPlaying = true;
+                    currentPlay.setImageResource(R.drawable.ic_pause_black_24dp);
+                }
             }
         });
 

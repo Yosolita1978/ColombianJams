@@ -15,15 +15,10 @@
 
         <TextView
             android:id="@+id/text_navigation"
+            style="@style/NavigationTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
             android:layout_weight="1"
-            android:padding="8dp"
-            android:textColor="@color/textBackground"
-            android:textSize="20sp"
             tools:text="Home" />
 
     </LinearLayout>
@@ -32,13 +27,13 @@
         android:id="@+id/app_name_textview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        app:fontFamily="casual"
+        android:layout_marginTop="@dimen/layout_marginTop"
         android:padding="@dimen/padding_text"
         android:text="@string/app_name"
         android:textAlignment="center"
         android:textColor="@color/textBackground"
-        android:textSize="@dimen/text_AppName" />
+        android:textSize="@dimen/text_AppName"
+        app:fontFamily="casual" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -48,7 +43,6 @@
         android:layout_marginTop="20dp"
         android:background="@color/colorPrimaryLight"
         android:orientation="horizontal">
-
 
         <TextView
             android:id="@+id/genres"
@@ -60,12 +54,14 @@
 
         <ImageView
             android:id="@+id/genres_img"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_gravity="start"
-            android:layout_marginEnd="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
             android:layout_weight="1"
+            android:contentDescription="@string/playsong"
+            android:padding="3dp"
             android:src="@drawable/musiciconbc" />
 
     </LinearLayout>
@@ -73,9 +69,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/list_item_height"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginLeft="@dimen/twenty_margin"
+        android:layout_marginRight="@dimen/twenty_margin"
+        android:layout_marginTop="@dimen/twenty_margin"
         android:background="@color/colorPrimaryLight"
         android:orientation="horizontal">
 
@@ -89,12 +85,14 @@
 
         <ImageView
             android:id="@+id/artist_img"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_gravity="start"
-            android:layout_marginEnd="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
             android:layout_weight="1"
+            android:contentDescription="@string/playsong"
+            android:padding="3dp"
             android:src="@drawable/musiciconbc" />
 
     </LinearLayout>
@@ -118,12 +116,14 @@
 
         <ImageView
             android:id="@+id/allsongs_imag"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_gravity="start"
-            android:layout_marginEnd="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
             android:layout_weight="1"
+            android:contentDescription="@string/playsong"
+            android:padding="3dp"
             android:src="@drawable/musiciconbc" />
 
     </LinearLayout>

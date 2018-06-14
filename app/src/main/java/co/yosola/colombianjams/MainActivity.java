@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         ImageView genreImg = (ImageView) findViewById(R.id.genres_img);
         genreImg.setOnClickListener(new View.OnClickListener() {
 
-            // The code in this method will be executed when the All Songs View is clicked on.
+            // The code in this method will be executed when the View is clicked on.
             @Override
             public void onClick(View view) {
                 Intent genresSongsIntent = new Intent(MainActivity.this, GenreActivity.class);
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Find the button in front genres to show the genres view
         ImageView artistImg = (ImageView) findViewById(R.id.artist_img);
-        genreImg.setOnClickListener(new View.OnClickListener() {
+        artistImg.setOnClickListener(new View.OnClickListener() {
 
             // The code in this method will be executed when the All Songs View is clicked on.
             @Override

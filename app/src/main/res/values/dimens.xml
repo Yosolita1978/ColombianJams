@@ -4,13 +4,30 @@
     <dimen name="list_item_height">80dp</dimen>
     <dimen name="list_item_width">300dp</dimen>
 
-    <!-- Default screen margins, per the Android Design guidelines. -->
+    <!-- Default screen margins -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
     <!-- Text dimensions. -->
     <dimen name="text_AppName">35sp</dimen>
-    <dimen name="text_items">26sp</dimen>
+    <dimen name="text_items">20sp</dimen>
     <dimen name="padding_text">16dp</dimen>
-    <dimen name="margin_text">8dp</dimen>
+    <dimen name="margin_text">8sp</dimen>
+    <dimen name="main_activity">20sp</dimen>
+    <dimen name="text_song_name">25sp</dimen>
+    <dimen name="text_song_artist">15sp</dimen>
+    <dimen name="text_playsong">15dp</dimen>
+
+    <!-- Navigation Text View dimensions. -->
+    <dimen name="marginLeft">8dp</dimen>
+    <dimen name="marginStart">8dp</dimen>
+    <dimen name="padding">8dp</dimen>
+
+    <!-- Main Activity dimensions. -->
+    <dimen name="layout_marginTop">30dp</dimen>
+    <dimen name="twenty_margin">20dp</dimen>
+
+    <!-- Layout list item -->
+    <dimen name="layout_list_height">80dp</dimen>
+
 </resources>

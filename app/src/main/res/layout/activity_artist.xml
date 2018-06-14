@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -17,34 +16,31 @@
             android:id="@+id/navigation_arrow"
             android:layout_width="44dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:layout_weight="0"
             android:padding="8dp"
-            android:layout_gravity="center_vertical"
             tools:src="@drawable/ic_arrow_back_black_24dp" />
 
         <TextView
             android:id="@+id/text_navigation"
+            style="@style/NavigationTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
             android:layout_weight="1"
-            android:padding="8dp"
             android:textColor="@color/textBackground"
-            android:textSize="20sp"
             tools:text="Artists" />
 
     </LinearLayout>
 
-    <ListView android:id="@+id/list_options"
-        android:orientation="vertical"
+    <ListView
+        android:id="@+id/list_options"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
-        tools:listitem="@layout/list_options"/>
+        tools:listitem="@layout/list_options" />
 
 </LinearLayout>
