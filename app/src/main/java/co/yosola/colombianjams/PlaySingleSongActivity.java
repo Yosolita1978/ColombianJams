@@ -2,14 +2,17 @@ package co.yosola.colombianjams;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class PlaySingleSongActivity extends AppCompatActivity {
 
+    private MediaPlayer mMediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +29,9 @@ public class PlaySingleSongActivity extends AppCompatActivity {
 
         //Start the current Song
         final Song currentSong = songsOfColombia.getSongbyIndex(value);
+
+        //Start the current mediaplayer with the correct song
+        mMediaPlayer = MediaPlayer.create(PlaySingleSongActivity.this, currentSong.getAudioResourceId());
 
         //SetUp the name of the current song
         TextView currentSongName = findViewById(R.id.song_name_text);
@@ -98,9 +104,14 @@ public class PlaySingleSongActivity extends AppCompatActivity {
                 if(isPlaying){
                     isPlaying = false;
                     currentPlay.setImageResource(R.drawable.ic_play_arrow_black_24dp);
+                    Toast.makeText(PlaySingleSongActivity.this, "You pause the song", Toast.LENGTH_SHORT).show();
+                    mMediaPlayer.pause();
                 } else {
                     isPlaying = true;
                     currentPlay.setImageResource(R.drawable.ic_pause_black_24dp);
+                    Toast.makeText(PlaySingleSongActivity.this, "Playing the song", Toast.LENGTH_SHORT).show();
+                    mMediaPlayer.start();
+
                 }
             }
         });
