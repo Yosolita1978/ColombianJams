@@ -113,6 +113,29 @@
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/time_current_song"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginBottom="73dp"
+            android:textColor="@color/textBackground"
+            android:textSize="20sp"
+            tools:text="0:00" />
+
+        <TextView
+            android:id="@+id/playing_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginBottom="50dp"
+            android:textColor="@color/textBackground"
+            android:textSize="20sp"
+            tools:text="0:00" />
 
     </RelativeLayout>
 

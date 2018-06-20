@@ -9,10 +9,18 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.os.Handler;
+
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public class PlaySingleSongActivity extends AppCompatActivity {
 
     private MediaPlayer mMediaPlayer;
+
+    private double startTime = 0;
+    private double finalTime = 0;
+    private Handler myHandler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +40,16 @@ public class PlaySingleSongActivity extends AppCompatActivity {
 
         //Start the current mediaplayer with the correct song
         mMediaPlayer = MediaPlayer.create(PlaySingleSongActivity.this, currentSong.getAudioResourceId());
+
+        //SetUp the time of the current song
+        TextView currentSongTime = findViewById(R.id.time_current_song);
+        finalTime = mMediaPlayer.getDuration();
+        currentSongTime.setText(String.format(Locale.US, "%d min:%d sec",
+                TimeUnit.MILLISECONDS.toMinutes((long) finalTime),
+                TimeUnit.MILLISECONDS.toSeconds((long) finalTime) -
+                        TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes((long)
+                                finalTime)))
+        );
 
         //SetUp the name of the current song
         TextView currentSongName = findViewById(R.id.song_name_text);
@@ -111,10 +129,25 @@ public class PlaySingleSongActivity extends AppCompatActivity {
                     currentPlay.setImageResource(R.drawable.ic_pause_black_24dp);
                     Toast.makeText(PlaySingleSongActivity.this, "Playing the song", Toast.LENGTH_SHORT).show();
                     mMediaPlayer.start();
+                    myHandler.postDelayed(UpdateSongTime,100);
 
                 }
             }
         });
 
     }
+
+    private Runnable UpdateSongTime = new Runnable() {
+        public void run() {
+            startTime = mMediaPlayer.getCurrentPosition();
+            TextView playingSongTime = findViewById(R.id.playing_time);
+            playingSongTime.setText(String.format(Locale.US,"Playing: %d:%d",
+                    TimeUnit.MILLISECONDS.toMinutes((long) startTime),
+                    TimeUnit.MILLISECONDS.toSeconds((long) startTime) -
+                            TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.
+                                    toMinutes((long) startTime)))
+            );
+            myHandler.postDelayed(this, 100);
+        }
+    };
 }
