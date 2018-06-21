@@ -48,8 +48,9 @@
             android:id="@+id/genres"
             style="@style/CategoryStyle"
             android:layout_weight="1"
-            android:background="@color/colorPrimaryLight"
+            android:background="?android:attr/selectableItemBackground"
             android:text="@string/genre"
+            android:textColor="@android:color/black"
             android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle" />
 
         <ImageView
@@ -79,7 +80,7 @@
             android:id="@+id/artists"
             style="@style/CategoryStyle"
             android:layout_weight="1"
-            android:background="@color/colorPrimaryLight"
+            android:background="?android:attr/selectableItemBackground"
             android:text="@string/artist"
             android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle" />
 
@@ -110,7 +111,7 @@
             android:id="@+id/allsongs"
             style="@style/CategoryStyle"
             android:layout_weight="1"
-            android:background="@color/colorPrimaryLight"
+            android:background="?android:attr/selectableItemBackground"
             android:text="@string/allsongs"
             android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle" />
 

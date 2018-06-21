@@ -5,13 +5,12 @@ import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.os.Handler;
 
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -23,6 +22,8 @@ public class PlaySingleSongActivity extends AppCompatActivity {
     private double startTime = 0;
     private double finalTime = 0;
     private Handler myHandler = new Handler();
+    private int forwardTime = 5000;
+    private int backwardTime = 5000;
 
     final Context context = this;
 
@@ -32,7 +33,9 @@ public class PlaySingleSongActivity extends AppCompatActivity {
     final AllSongsList songsOfColombia = AllSongsList.getAllSongs(context);
 
 
-    /** Handles audio focus when playing a sound file */
+    /**
+     * Handles audio focus when playing a sound file
+     */
     private AudioManager mAudioManager;
 
 
@@ -89,7 +92,7 @@ public class PlaySingleSongActivity extends AppCompatActivity {
         final Song currentSong = songsOfColombia.getSongbyIndex(value);
 
         //Start the current mediaplayer with the correct song
-        if(mMediaPlayer == null) {
+        if (mMediaPlayer == null) {
             mMediaPlayer = MediaPlayer.create(PlaySingleSongActivity.this, currentSong.getAudioResourceId());
         }
         // Create and setup the {@link AudioManager} to request audio focus
@@ -175,14 +178,15 @@ public class PlaySingleSongActivity extends AppCompatActivity {
         currentPlay.setImageResource(R.drawable.ic_play_arrow_black_24dp);
         currentPlay.setOnClickListener(new View.OnClickListener() {
             boolean isPlaying = false;
+
             // The code in this method will be executed when the All Songs View is clicked on.
             @Override
             public void onClick(View view) {
-                if(isPlaying){
+                if (isPlaying) {
                     isPlaying = false;
                     currentPlay.setImageResource(R.drawable.ic_play_arrow_black_24dp);
                     Toast.makeText(PlaySingleSongActivity.this, "You pause the song", Toast.LENGTH_SHORT).show();
-                    if(mMediaPlayer != null) {
+                    if (mMediaPlayer != null) {
                         mMediaPlayer.pause();
                     }
                 } else {
@@ -195,8 +199,8 @@ public class PlaySingleSongActivity extends AppCompatActivity {
 
                     int result = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener,
                             AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
-                    if(result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
-                        if(mMediaPlayer != null) {
+                    if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+                        if (mMediaPlayer != null) {
                             mMediaPlayer.start();
                             // Setup a listener on the media player, so that we can updete the time of the song.
                             myHandler.postDelayed(UpdateSongTime, 100);
@@ -209,14 +213,51 @@ public class PlaySingleSongActivity extends AppCompatActivity {
             }
         });
 
+        //SetUp the Rewind image of the current song
+        final ImageView rewindPlay = findViewById(R.id.rewind_song);
+        rewindPlay.setImageResource(R.drawable.ic_fast_rewind_black_24dp);
+        rewindPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int temp = (int)startTime;
+
+                if((temp-backwardTime)>0){
+                    startTime = startTime - backwardTime;
+                    mMediaPlayer.seekTo((int) startTime);
+                    Toast.makeText(getApplicationContext(),"You have Jumped backward 5 secs",Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getApplicationContext(),"Cannot jump backward 5 secs",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        //SetUp the Foward image of the current song
+        final ImageView fowardPlay = findViewById(R.id.forward_song);
+        fowardPlay.setImageResource(R.drawable.ic_fast_forward_black_24dp);
+        fowardPlay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int temp = (int)startTime;
+
+                if((temp+forwardTime)<=finalTime){
+                    startTime = startTime + forwardTime;
+                    mMediaPlayer.seekTo((int) startTime);
+                    Toast.makeText(getApplicationContext(),"You have Jumped forward 5 secs",Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getApplicationContext(),"Cannot jump forward 5 secs",Toast.LENGTH_SHORT).show();
+                    mMediaPlayer.setOnCompletionListener(mCompletionListener);
+                }
+            }
+        });
+
     }
 
     private Runnable UpdateSongTime = new Runnable() {
         public void run() {
-            if(mMediaPlayer != null){
+            if (mMediaPlayer != null) {
                 startTime = mMediaPlayer.getCurrentPosition();
                 TextView playingSongTime = findViewById(R.id.playing_time);
-                playingSongTime.setText(String.format(Locale.US,"Playing: %d:%d",
+                playingSongTime.setText(String.format(Locale.US, "Playing: %d:%d",
                         TimeUnit.MILLISECONDS.toMinutes((long) startTime),
                         TimeUnit.MILLISECONDS.toSeconds((long) startTime) -
                                 TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.
@@ -251,7 +292,7 @@ public class PlaySingleSongActivity extends AppCompatActivity {
         final Song currentSong = songsOfColombia.getSongbyIndex(value);
 
         //Start the current mediaplayer with the correct song
-        if(mMediaPlayer == null) {
+        if (mMediaPlayer == null) {
             mMediaPlayer = MediaPlayer.create(PlaySingleSongActivity.this, currentSong.getAudioResourceId());
         }
         // Create and setup the {@link AudioManager} to request audio focus
@@ -269,14 +310,15 @@ public class PlaySingleSongActivity extends AppCompatActivity {
 
         currentPlay.setOnClickListener(new View.OnClickListener() {
             boolean isPlaying = false;
+
             // The code in this method will be executed when the All Songs View is clicked on.
             @Override
             public void onClick(View view) {
-                if(isPlaying){
+                if (isPlaying) {
                     isPlaying = false;
                     currentPlay.setImageResource(R.drawable.ic_play_arrow_black_24dp);
                     Toast.makeText(PlaySingleSongActivity.this, "You pause the song", Toast.LENGTH_SHORT).show();
-                    if(mMediaPlayer != null) {
+                    if (mMediaPlayer != null) {
                         mMediaPlayer.pause();
                     }
                 } else {
@@ -289,8 +331,8 @@ public class PlaySingleSongActivity extends AppCompatActivity {
 
                     int result = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener,
                             AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
-                    if(result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
-                        if(mMediaPlayer != null) {
+                    if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+                        if (mMediaPlayer != null) {
                             mMediaPlayer.start();
                             // Setup a listener on the media player, so that we can updete the time of the song.
                             myHandler.postDelayed(UpdateSongTime, 100);

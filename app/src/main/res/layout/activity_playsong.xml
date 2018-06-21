@@ -84,6 +84,7 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:id="@+id/rewind_song"
                 android:layout_width="0dp"
                 android:layout_height="45dp"
                 android:layout_gravity="center"
@@ -102,6 +103,7 @@
                 tools:src="@drawable/ic_play_arrow_black_24dp" />
 
             <ImageView
+                android:id="@+id/forward_song"
                 android:layout_width="0dp"
                 android:layout_height="45dp"
                 android:layout_gravity="center"
