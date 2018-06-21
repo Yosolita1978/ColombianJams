@@ -6,6 +6,7 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,8 +24,17 @@ public class PlaySingleSongActivity extends AppCompatActivity {
     private double finalTime = 0;
     private Handler myHandler = new Handler();
 
+    final Context context = this;
+
+    int value;
+
+    //Start the allSong list
+    final AllSongsList songsOfColombia = AllSongsList.getAllSongs(context);
+
+
     /** Handles audio focus when playing a sound file */
     private AudioManager mAudioManager;
+
 
     /**
      * This listener gets triggered when the {@link MediaPlayer} has completed
@@ -71,11 +81,6 @@ public class PlaySingleSongActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playsong);
-
-        final Context context = this;
-
-        //Start the allSong list
-        final AllSongsList songsOfColombia = AllSongsList.getAllSongs(context);
 
         //Grab the position of the current song with the intent
         int value = getIntent().getExtras().getInt("indexSongSelected");
@@ -228,7 +233,87 @@ public class PlaySingleSongActivity extends AppCompatActivity {
         // When the activity is stopped, release the media player resources because we won't
         // be playing any more sounds.
         releaseMediaPlayer();
-        boolean isPlaying = false;
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        //SetUp the Play image of the current song
+        final ImageView currentPlay = findViewById(R.id.play_current_song);
+        currentPlay.setImageResource(R.drawable.ic_play_arrow_black_24dp);
+
+        //Grab the position of the current song with the intent
+        int value = getIntent().getExtras().getInt("indexSongSelected");
+
+        //Start the current Song
+        final Song currentSong = songsOfColombia.getSongbyIndex(value);
+
+        //Start the current mediaplayer with the correct song
+        if(mMediaPlayer == null) {
+            mMediaPlayer = MediaPlayer.create(PlaySingleSongActivity.this, currentSong.getAudioResourceId());
+        }
+        // Create and setup the {@link AudioManager} to request audio focus
+        mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+
+        //SetUp the time of the current song
+        TextView currentSongTime = findViewById(R.id.time_current_song);
+        finalTime = mMediaPlayer.getDuration();
+        currentSongTime.setText(String.format(Locale.US, "%d min:%d sec",
+                TimeUnit.MILLISECONDS.toMinutes((long) finalTime),
+                TimeUnit.MILLISECONDS.toSeconds((long) finalTime) -
+                        TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes((long)
+                                finalTime)))
+        );
+
+        currentPlay.setOnClickListener(new View.OnClickListener() {
+            boolean isPlaying = false;
+            // The code in this method will be executed when the All Songs View is clicked on.
+            @Override
+            public void onClick(View view) {
+                if(isPlaying){
+                    isPlaying = false;
+                    currentPlay.setImageResource(R.drawable.ic_play_arrow_black_24dp);
+                    Toast.makeText(PlaySingleSongActivity.this, "You pause the song", Toast.LENGTH_SHORT).show();
+                    if(mMediaPlayer != null) {
+                        mMediaPlayer.pause();
+                    }
+                } else {
+                    isPlaying = true;
+                    currentPlay.setImageResource(R.drawable.ic_pause_black_24dp);
+                    Toast.makeText(PlaySingleSongActivity.this, "Playing the song", Toast.LENGTH_SHORT).show();
+
+                    // Request audio focus so in order to play the audio file. The app needs to play a
+                    // song, so we will request audio focus for it.
+
+                    int result = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener,
+                            AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN);
+                    if(result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+                        if(mMediaPlayer != null) {
+                            mMediaPlayer.start();
+                            // Setup a listener on the media player, so that we can updete the time of the song.
+                            myHandler.postDelayed(UpdateSongTime, 100);
+                            // Setup a listener on the media player, so that we can stop and release the
+                            // media player once the sound has finished playing.
+                            mMediaPlayer.setOnCompletionListener(mCompletionListener);
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle state) {
+        super.onSaveInstanceState(state);
+        state.putInt("indexSongSelected", value);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        value = savedInstanceState.getInt("indexSongSelected");
     }
 
     /**
